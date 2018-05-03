@@ -106,6 +106,7 @@ input[type=submit:active] {
 .ext-items {
     margin: 1px;
     font-size: 12px;
+    color: #aaa;
 }
 
 .list-files a {
