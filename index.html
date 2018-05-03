@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>File Hosting :: Upload Form</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=0.9, minimum-scale=0.1"/>
+    </head>
+    <body>
+        <header class="header">
+	    <nav>
+		<div class="topnav" id="myTopnav">
+		    <a href="/index.html">Upload</a>
+		</div>
+	    </nav>
+        </header>
+
+        <main>
+            <div class="upload-form">
+                <form action="/upload.php" method="POST" enctype="multipart/form-data"/>
+		<input type="hidden" value="101" name="test" />
+                <div class="list-files">
+		    
+		    <h1>File Hosting :: Upload Form</h1>
+		    <ul>
+			<li><input class="files" name="pictures[]" type="file" /></li>
+			<li><input class="files" name="pictures[]" type="file" /></li>
+			<li><input class="files" name="pictures[]" type="file" /></li>
+			<input type="submit" value="Send"/>
+		</div>
+                </form>
+	    </div>
+	</main>
+    </body>
+</html>
