@@ -85,13 +85,27 @@ input[type=submit:active] {
     padding: 15px;
 }
 
-.list-files li {
+.input {
     list-style-type: none;
     margin: 10px;
     border: 1px solid #ddd;
     background-color: #eeeeee;
     margin: 10px;
     padding: 10px;
+}
+
+.file-link-item {
+    list-style-type: none;
+    margin: 10px;
+    border: 1px solid #ddd;
+    background-color: #eeeeee;
+    margin: 10px;
+    padding: 10px;
+}
+
+.ext-items {
+    margin: 1px;
+    font-size: 12px;
 }
 
 .list-files a {

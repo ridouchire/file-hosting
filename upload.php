@@ -1,5 +1,18 @@
 <?php
 
+$uploaddir = "./files/";
+
+$files = array();
+$files_full_path = array();
+
+$list_allowed_types = array(
+    "gif",
+    "jpg",
+    "jpeg",
+    "png",
+);
+
+
 if (!isset($_POST['test'])) {
     die("Error: fuck off");
 }
@@ -28,16 +41,17 @@ function fs_chmod($files)
     return true;
 }
 
-$uploaddir = "./files/";
-
-$files = array();
-$files_full_path = array();
-
 foreach ($_FILES["pictures"]["error"] as $key => $error) {
     
     if ($error == UPLOAD_ERR_OK) {
         
         $user_filename = preg_replace("#[^a-z0-9_.-]#i", "", strtolower(stripslashes(htmlentities($_FILES['pictures']['name'][$key]))));
+        $ext = explode('/', $_FILES['pictures']['type'][$key]);
+        $ext = $ext[1];
+
+        if (!in_array($ext, $list_allowed_types)) {
+            die("Error: Attempt to upload an unsupported file type");
+        }
 
         $prefix = explode('/', $_FILES['pictures']['tmp_name'][$key]);
         $prefix = $prefix[2];
