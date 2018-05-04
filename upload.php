@@ -47,14 +47,14 @@ foreach ($_FILES["pictures"]["error"] as $key => $error) {
         
         $user_filename = preg_replace("#[^a-z0-9_.-]#i", "", strtolower(stripslashes(htmlentities($_FILES['pictures']['name'][$key]))));
         $ext = explode('/', $_FILES['pictures']['type'][$key]);
-        $ext = $ext[1];
+        $ext = end($ext);
 
         if (!in_array($ext, $list_allowed_types)) {
             die("Error: Attempt to upload an unsupported file type");
         }
 
         $prefix = explode('/', $_FILES['pictures']['tmp_name'][$key]);
-        $prefix = $prefix[2];
+        $prefix = end($ext);
         $user_filename = $prefix.''.$user_filename;
         $filename = $uploaddir.basename($user_filename);
        
