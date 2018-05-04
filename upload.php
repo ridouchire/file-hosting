@@ -22,7 +22,7 @@ if (!isset($_POST['test'])) {
  *
  * @param $files array List files
  *
- * @return boolean
+ * @return boolean 
  */
 function fs_chmod($files)
 {
@@ -61,6 +61,8 @@ foreach ($_FILES["pictures"]["error"] as $key => $error) {
         copy($_FILES["pictures"]["tmp_name"][$key], $filename);
         $files[] = $user_filename;
         $files_full_path[] = $filename;
+    } else {
+        die('Error: No files to upload');
     }
     fs_chmod($files_full_path);
 }
