@@ -54,7 +54,7 @@ foreach ($_FILES["pictures"]["error"] as $key => $error) {
         }
 
         $prefix = explode('/', $_FILES['pictures']['tmp_name'][$key]);
-        $prefix = end($ext);
+        $prefix = end($prefix);
         $user_filename = $prefix.''.$user_filename;
         $filename = $uploaddir.basename($user_filename);
        
