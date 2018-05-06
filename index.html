@@ -17,10 +17,9 @@
 
         <main>
             <div class="upload-form">
-                <form action="/upload.php" method="POST" enctype="multipart/form-data"/>
-		<input type="hidden" value="101" name="test" />
                 <div class="list-files">
-		    
+		    <form action="/upload.php" method="POST" enctype="multipart/form-data"/>
+		    <input type="hidden" value="101" name="test" />
 		    <h1>Image Hosting :: Upload Form</h1>
 		    <span class="ext-items"><p>Files supported: JPG, PNG, GIF</p></span>
 		    <ul>
@@ -28,8 +27,9 @@
 			<li class="input"><input class="files" name="pictures[]" type="file" /></li>
 			<li class="input"><input class="files" name="pictures[]" type="file" /></li>
 			<input type="submit" value="Send"/>
+		    </ul>
+                    </form>
 		</div>
-                </form>
 	    </div>
 	</main>
     </body>
