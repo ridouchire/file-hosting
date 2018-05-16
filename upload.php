@@ -42,9 +42,7 @@ function fs_chmod($files)
 }
 
 foreach ($_FILES["pictures"]["error"] as $key => $error) {
-    
     if ($error == UPLOAD_ERR_OK) {
-        
         $user_filename = preg_replace("#[^a-z0-9_.-]#i", "", strtolower(stripslashes(htmlentities($_FILES['pictures']['name'][$key]))));
         $ext = explode('/', $_FILES['pictures']['type'][$key]);
         $ext = end($ext);
