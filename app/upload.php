@@ -27,4 +27,4 @@ foreach ($_FILES['pictures']['error'] as $key => $error) {
         }
     }
 }
-require 'list.html';
+require '../list.html';
