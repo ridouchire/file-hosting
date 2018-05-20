@@ -1,65 +1,30 @@
 <?php
 
-$uploaddir = "./files/";
+require_once 'conf.php';
+require_once 'func.php';
 
-$files = array();
-$files_full_path = array();
+$files           = [];
+$files_full_path = [];
 
-$list_allowed_types = array(
-    "gif",
-    "jpg",
-    "jpeg",
-    "png",
-);
-
-
-if (!isset($_POST['test'])) {
-    die("Error: fuck off");
-}
-
-/**
- * Set files permission
- *
- * @param $files array List files
- *
- * @return boolean
- */
-function fs_chmod($files)
-{
-    if (!$files) {
-        return false;
-    }
-
-    foreach ($files as $file) {
-        try {
-            chmod($file, 0666);
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-foreach ($_FILES["pictures"]["error"] as $key => $error) {
+foreach ($_FILES['pictures']['error'] as $key => $error) {
     if ($error == UPLOAD_ERR_OK) {
-        $user_filename = preg_replace("#[^a-z0-9_.-]#i", "", strtolower(stripslashes(htmlentities($_FILES['pictures']['name'][$key]))));
-        $ext = explode('/', $_FILES['pictures']['type'][$key]);
-        $ext = end($ext);
-
-        if (!in_array($ext, $list_allowed_types)) {
-            die("Error: Attempt to upload an unsupported file type");
+        $ext = end(explode('/', $_FILES['pictures']['type'][$key]));
+        
+        if (fn_check_filetype($ext) === false) {
+            die('Attempt to upload an unsupported file type');
         }
 
-        $prefix = explode('/', $_FILES['pictures']['tmp_name'][$key]);
-        $prefix = end($prefix);
-        $user_filename = $prefix.''.$user_filename;
-        $filename = $uploaddir.basename($user_filename);
-       
-        copy($_FILES["pictures"]["tmp_name"][$key], $filename);
-        $files[] = $user_filename;
-        $files_full_path[] = $filename;
+        $temp     = $_FILES['pictures']['tmp_name'][$key];
+        $tempname = end(explode('/', $temp));
+        $filename = fn_generate_filename($_FILES['pictures']['name'][$key], $tempname);
+        $filepath = DIR_UPLOAD.basename($filename);
+        move_uploaded_file($temp, $filepath);
+        if (!fn_chmod($filepath) === false) {
+            $files[] = $filename;
+            $paths   = $filepath;
+        } else {
+            die('Can not change file permission');
+        }
     }
-    fs_chmod($files_full_path);
 }
-include "list.html";
+require 'list.html';

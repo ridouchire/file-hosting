@@ -9,7 +9,7 @@ a {
 
 body {
     dispay: flex;
-    background: #f6f6f6;
+    background: #F6F6F6;
     justify-content: center;
     align-items: center;
 }
@@ -32,24 +32,24 @@ h1 {
 }
 
 .topnav {
-    background-color: #fff;
+    background-color: #FFF;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 10px 10px 10px;
+    padding: 10px;
 }
 
-.topnav a{
+.topnav a {
     font-weight: 600;
     color: #000;
     text-align: center;
     font-size: 20px;
     letter-spacing: -1px;
-    padding: 10px 10px 10px 10px;
+    padding: 10px;
 }
 
 .topnav a:active {
-    border: 2px solid #ccccff;
+    border: 2px solid #CCF;
     border-radius: 3px;
 }
 
@@ -64,9 +64,8 @@ h1 {
     margin: 10px;
 }
 
-
 .list-files {
-    background: #fff;
+    background: #FFF;
     margin-top: 2rem;
     text-align: center;
     box-shadow: rgba(0,0,0, 0.4) 0 1px 1px -1px;
@@ -76,25 +75,24 @@ h1 {
 .input {
     list-style-type: none;
     margin: 10px;
-    border: 1px solid #ddd;
-    background-color: #eeeeee;
+    border: 1px solid #DDD;
+    background-color: #EEE;
     margin: 10px;
     padding: 10px;
 }
 
-
 input[type=submit] {
     width: 20em;
     height: 2em;
-    background-color: #dddddd;
+    background-color: #DDD;
     cursor: pointer;
-    border: 1px solid #ddddff;
-    box-shadow: inset 0px 20px 20px #ffffff;
+    border: 1px solid #DDF;
+    box-shadow: inset 0px 20px 20px #FFF;
     margin: 10px;
 }
 
 input[type=submit:hover] {
-    box-shadow: inset 0px -20px 20px #ffffff;
+    box-shadow: inset 0px -20px 20px #FFF;
 }
 
 input[type=submit:active] {
@@ -103,12 +101,11 @@ input[type=submit:active] {
     zoom: 1;
 }
 
-
 .file-link-item {
     list-style-type: none;
     margi*n: 10px;
-    border: 1px solid #ddd;
-    background-color: #eeeeee;
+    border: 1px solid #DDD;
+    background-color: #EEE;
     margin: 10px;
     padding: 10px;
 }
@@ -116,7 +113,7 @@ input[type=submit:active] {
 .ext-items {
     margin: 1px;
     font-size: 12px;
-    color: #aaa;
+    color: #AAA;
 }
 
 .list-files a {
@@ -124,7 +121,7 @@ input[type=submit:active] {
 }
 
 .error {
-    color: #f00;
+    color: #F00;
     list-style-type: none;
 }
 
@@ -134,8 +131,10 @@ input[type=submit:active] {
 }
 
 @media screen and (max-width: 768px) {
+
     nav {
-    width: 100%;
-    height: 50px;
+        width: 100%;
+        height: 50px;
     }
+
 }
