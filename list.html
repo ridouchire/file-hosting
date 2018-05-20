@@ -3,14 +3,14 @@
     <head>
         <meta charset="UTF-8"/>
         <title>Image Hosting :: List Uploaded Files</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     </head>
     <body>
         <header class="header">
 	    <nav>
 		<div class="topnav" id="myTopnav">
-		    <a href="/index.html">Upload</a>
+		    <a href="/">Upload</a>
 		</div>
 	    </nav>
         </header>
@@ -22,7 +22,7 @@
 		    <h1>Image Hosting :: Links for Files</h1>
                     <ul>
 			<?php foreach ($files as $file): ?>
-			<li class="file-link-item input"><a href='./files/<?php echo $file ?>'><?php echo $file ?></a></li>
+			<li class="file-link-item input"><a href='/files/<?php echo $file ?>' target="_blank"><?php echo $file ?></a></li>
 			<?php endforeach ?>
 			<?php else: ?>
 			<li class="error input">Error: not file for upload</li>
