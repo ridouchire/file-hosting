@@ -5,7 +5,8 @@ use PHPUnit\Framework\TestCase;
 require(__DIR__ . "/../conf.php");
 require(__DIR__ . "/../func.php");
 
-class FuncTest extends TestCase {
+class FuncTest extends TestCase
+{
 
     public function setUp()
     {
