@@ -14,3 +14,10 @@
 		</div>
 	    </nav>
         </header>
+
+	<?php if (!empty($notice)): ?>
+	<div class="notice">
+	    <span class="notice-name"><?php echo $notice['name'] ?></span> : &nbsp;
+	    <span class="motice-message"><?php echo $notice['message'] ?></span>
+	</div>
+	<?php endif ?>
