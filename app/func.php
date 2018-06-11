@@ -1,6 +1,35 @@
 <?php
 
 /**
+ * Set notification on website
+ *
+ * @param $type string Type notification
+ * @param $message string Message notification
+ *
+ * @return array|false
+ */
+function fn_set_notification($type, $message)
+{
+    $notice = array();
+
+    if ($type == 'error') {
+        $notice['name'] = 'Error';
+    } elseif ($type == 'warning') {
+        $notice['name'] = 'Warning';
+    } else {
+        return false;
+    }
+
+    if ($message == null) {
+        return false;
+    } else {
+        $notice['message'] = $message;
+    }
+
+    return $notice;
+}
+
+/**
  * Generate filename
  *
  * @param string $filename Original name file
