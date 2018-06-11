@@ -1,8 +1,6 @@
-# Web application for loading and storing images.
+# Web application for upload and storing images.
 
 ## Features:
-* Time of storage of pictures == time of existence of the resource.
+* The storage period for files is equal to the resource of the resource.
 * Simple implementation.
 * Adaptive interface for mobile devices.
-
-Lol.
