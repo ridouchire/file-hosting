@@ -1,0 +1,18 @@
+<main>
+    <div class="links-items">
+	<div class="list-files">
+	    <?php if ($files): ?>
+	    <h1>Image Hosting :: Links for Files</h1>
+            <ul>
+		<?php foreach ($files as $file): ?>
+		<li class="file-link-item input"><a href='/files/<?php echo $file ?>' target="_blank"><?php echo $file ?></a></li>
+		<?php endforeach ?>
+		<?php else: ?>
+		<li class="error input">Error: not file for upload</li>
+		<?php endif ?>
+            </ul>
+	</div>
+    </div>
+</main>
+    </body>
+</html>
