@@ -1,5 +1,6 @@
 <?php
 
+define('APP_VERSION', 'ImageHosting v.0.2.2-dev');
 define('DIR_UPLOAD', '../files/');
 define('ALLOWED_TYPES', ['gif', 'jpg', 'jpeg', 'png', 'jpe'], true);
 // UNIQUE, TEMP, FILENAME
