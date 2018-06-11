@@ -3,8 +3,10 @@
 require_once 'conf.php';
 require_once 'func.php';
 
-$files           = [];
-$files_full_path = [];
+require "../templates/index.html";
+
+$files           = array();
+$files_full_path = array();
 
 foreach ($_FILES['pictures']['error'] as $key => $error) {
     if ($error == UPLOAD_ERR_OK) {
@@ -27,4 +29,4 @@ foreach ($_FILES['pictures']['error'] as $key => $error) {
         }
     }
 }
-require '../list.html';
+require '../templates/list.html';
