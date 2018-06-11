@@ -7,4 +7,4 @@
 
 ## Version:
 
-``ImageHosting v.0.2.1-beta.``
+``ImageHosting v.0.2.2-stable.``
