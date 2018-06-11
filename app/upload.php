@@ -7,6 +7,11 @@ $files           = array();
 $files_full_path = array();
 $notice          = false;
 
+
+if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
+    $notice = fn_set_notification('error', 'Go back, fucking robots');
+}
+
 foreach ($_FILES['pictures']['error'] as $key => $error) {
     if ($error == UPLOAD_ERR_OK) {
         $ext = end(explode('/', $_FILES['pictures']['type'][$key]));
