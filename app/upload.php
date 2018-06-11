@@ -10,28 +10,30 @@ $notice          = false;
 
 if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
     $notice = fn_set_notification('error', 'Go back, fucking robots');
-}
-
-foreach ($_FILES['pictures']['error'] as $key => $error) {
-    if ($error == UPLOAD_ERR_OK) {
-        $ext = end(explode('/', $_FILES['pictures']['type'][$key]));
+} else {
+    foreach ($_FILES['pictures']['error'] as $key => $error) {
+        if ($error == UPLOAD_ERR_OK) {
+            $ext = explode('/', $_FILES['pictures']['type'][$key]);
+            $ext = end($ext);
         
-        if (fn_check_filetype($ext) === false) {
-            $notice = fn_set_notification('error', 'Attempt to upload an unsupported file type');
-            break;
-        }
+            if (fn_check_filetype($ext) === false) {
+                $notice = fn_set_notification('error', 'Attempt to upload an unsupported file type');
+                break;
+            }
 
-        $temp     = $_FILES['pictures']['tmp_name'][$key];
-        $tempname = end(explode('/', $temp));
-        $filename = fn_generate_filename($_FILES['pictures']['name'][$key], $tempname, $ext);
-        $filename  = $filename;
-        $filepath = DIR_UPLOAD.basename($filename);
-        move_uploaded_file($temp, $filepath);
-        if (!fn_chmod($filepath) === false) {
-            $files[] = $filename;
-            $paths   = $filepath;
-        } else {
-            $notice = fn_set_notification('warning', 'Can not change file permission');
+            $temp     = $_FILES['pictures']['tmp_name'][$key];
+            $tempname = explode('/', $temp);
+            $tempname = end($tempname);
+            $filename = fn_generate_filename($_FILES['pictures']['name'][$key], $tempname, $ext);
+            $filename  = $filename;
+            $filepath = DIR_UPLOAD.basename($filename);
+            move_uploaded_file($temp, $filepath);
+            if (!fn_chmod($filepath) === false) {
+                $files[] = $filename;
+                $paths   = $filepath;
+            } else {
+                $notice = fn_set_notification('warning', 'Can not change file permission');
+            }
         }
     }
 

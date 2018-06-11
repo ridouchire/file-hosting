@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('KERNEL')) {
+    echo "Access denied";
+}
+
 /**
  * Set notification on website
  *
