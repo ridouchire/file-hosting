@@ -19,6 +19,7 @@ foreach ($_FILES['pictures']['error'] as $key => $error) {
         $temp     = $_FILES['pictures']['tmp_name'][$key];
         $tempname = end(explode('/', $temp));
         $filename = fn_generate_filename($_FILES['pictures']['name'][$key], $tempname);
+        $filename  = $filename.'.'.$ext;
         $filepath = DIR_UPLOAD.basename($filename);
         move_uploaded_file($temp, $filepath);
         if (!fn_chmod($filepath) === false) {
