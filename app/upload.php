@@ -38,7 +38,7 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
     }
 
     if (empty($files)) {
-        $notice = fn_set_notification('error', 'Not file for upload');
+        $notice = fn_set_notification('error', 'No files were uploaded.');
     }
 }
 
