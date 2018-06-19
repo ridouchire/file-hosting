@@ -1,3 +1,4 @@
+https://travis-ci.org/ridouchire/image-hosting.svg?branch=master
 # Web application for upload and storing images.
 
 ## Features:
