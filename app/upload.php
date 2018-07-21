@@ -25,7 +25,7 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
             $tempname = explode('/', $temp);
             $tempname = end($tempname);
             $filename = fn_generate_filename($_FILES['pictures']['name'][$key], $tempname, $ext);
-            $filename  = $filename;
+            $filename = $filename;
             $filepath = DIR_UPLOAD.basename($filename);
             move_uploaded_file($temp, $filepath);
             if (!fn_chmod($filepath) === false) {
