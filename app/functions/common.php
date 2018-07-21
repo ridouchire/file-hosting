@@ -4,6 +4,7 @@ if (!defined('KERNEL')) {
     echo 'Access denied';
 }
 
+
 /**
  * Set notification on website
  *
@@ -115,12 +116,15 @@ function fn_chmod($path_file)
  *
  * @throws Exception
  */
-function fn_get_schemas() {
-    $paths = glob(ROOT . '/app/schemas/*.php');
+function fn_get_schemas()
+{
+    $paths = glob(ROOT.'/app/schemas/*.php');
     global $schemas;
 
     foreach ($paths as $path) {
-        require($path);
+        include $path;
     }
+
     return $schemas;
-}
+
+}//end fn_get_schemas()

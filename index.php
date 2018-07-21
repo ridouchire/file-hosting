@@ -10,14 +10,14 @@ require_once 'config.php';
 require_once 'app/functions/common.php';
 
 fn_get_schemas();
-require(ROOT . '/app/schemas/menu.php');
+require ROOT.'/app/schemas/menu.php';
 
 $loader = new Twig\Loader\FilesystemLoader(TEMPLATES_DIR);
 
 if (defined('CACHE_DIR')) {
     $twig = new Twig\Environment($loader, [(CACHE_DIR)]);
 } else {
-    $twig = new Twig\Environment($loader, [];
+    $twig = new Twig\Environment($loader, []);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo $twig->render(
             'index.html',
             [
-                'title' => APP_VERSION,
-                'menu'  => 'Upload',
-                'notice' => $notice,
+             'title'  => APP_VERSION,
+             'menu'   => 'Upload',
+             'notice' => $notice,
             ]
         );
         exit;
@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 echo $twig->render(
     'index.html',
     [
-        'title' => APP_VERSION,
-        'menu' => $schemas['menu'],
+     'title' => APP_VERSION,
+     'menu'  => $schemas['menu'],
     ]
 );
 
