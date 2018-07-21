@@ -9,5 +9,5 @@ php:
 # use the $DB env variable to determine the phpunit.xml to use
 script:
   - phpunit ./app/tests
-  - find -name '*.php' -not -path './vendor/*' -exec php -l {} \;
+  - '! find . -type f -name "*.php" -exec php -d error_reporting=32767 -l {} \; 2>&1 >&- | grep "^"'
   
