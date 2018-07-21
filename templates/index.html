@@ -11,7 +11,13 @@
 	    <nav>
 		<div class="topnav" id="myTopnav">
 		    {% for item in menu %}
-		    <a href="{{ item.link|e }}">{{ item.name|e }}</a>
+		    <a href="{{ item.link|e }}"
+		       {% if item.target %}
+		       target="_{{ item.target }}"
+		       {% endif %}
+		    >
+			{{ item.name|e }}
+		    </a>
 		    {% endfor %}
 		</div>
 	    </nav>
