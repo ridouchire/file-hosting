@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', true);
+error_reporting(E_ALL);
+
 define('KERNEL', true);
 define('APP_VERSION', 'ImageHosting v.1.0.0');
 
@@ -10,6 +13,3 @@ define('CACHE_DIR', './var/cache');
 
 // UNIQUE, TEMP, FILENAME
 define('FILENAME_TYPE', 'UNIQUE');
-
-ini_set('display_errors', true);
-error_reporting(E_ALL);
