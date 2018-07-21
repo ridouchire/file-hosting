@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 define('KERNEL', true);
 define('APP_VERSION', 'ImageHosting v.1.0.0');
 
+define('ROOT', dirname(__FILE__));
 define('DIR_UPLOAD', '../files/');
 define('ALLOWED_TYPES', ['gif', 'jpg', 'jpeg', 'png', 'jpe'], true);
 define('TEMPLATES_DIR', './templates');

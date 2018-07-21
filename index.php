@@ -9,6 +9,9 @@ require_once 'vendor/autoload.php';
 require_once 'config.php';
 require_once 'app/functions/common.php';
 
+fn_get_schemas();
+require(ROOT . '/app/schemas/menu.php');
+
 $loader = new Twig\Loader\FilesystemLoader(TEMPLATES_DIR);
 
 if (defined('CACHE_DIR')) {
@@ -42,7 +45,7 @@ echo $twig->render(
     'index.html',
     array(
         'title' => APP_VERSION,
-        'menu' => 'Upload',
+        'menu' => $schemas['menu'],
     )
 );
 

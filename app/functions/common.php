@@ -4,7 +4,6 @@ if (!defined('KERNEL')) {
     echo 'Access denied';
 }
 
-
 /**
  * Set notification on website
  *
@@ -89,6 +88,8 @@ function fn_check_filetype($ext)
  * @param $path_file Full path file
  *
  * @return boolean
+ *
+ * @throws Exception
  */
 function fn_chmod($path_file)
 {
@@ -105,3 +106,20 @@ function fn_chmod($path_file)
     return true;
 
 }//end fn_chmod()
+
+
+/**
+ * Get schemas
+ *
+ * @return boolean
+ *
+ * @throws Exception
+ */
+function fn_get_schemas() {
+    $paths = glob(ROOT . '/app/schemas/*.php');
+    global $schemas;
+
+    foreach ($paths as $path) {
+        require($path);
+    }
+}
