@@ -34,17 +34,17 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
             } else {
                 $notice = fn_set_notification('warning', 'Can not change file permission');
             }
-        }
-    }
+        }//end if
+    }//end foreach
 
     if (empty($files)) {
         $notice = fn_set_notification('error', 'No files were uploaded.');
     }
-}
+}//end if
 
 if ($notice !== false) {
-    require "../templates/index.html";
+    include '../templates/index.html';
 } else {
-    require "../templates/index.html";
-    require '../templates/list.html';
+    include '../templates/index.html';
+    include '../templates/list.html';
 }
