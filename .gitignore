@@ -1,2 +1,6 @@
 files/*
 /vendor/
+/app/tests/
+/docs/
+/.travis.yml
+/.ac-php-conf.json
