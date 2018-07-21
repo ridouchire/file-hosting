@@ -111,7 +111,7 @@ function fn_chmod($path_file)
 /**
  * Get schemas
  *
- * @return boolean
+ * @return array
  *
  * @throws Exception
  */
@@ -122,4 +122,5 @@ function fn_get_schemas() {
     foreach ($paths as $path) {
         require($path);
     }
+    return $schemas;
 }
