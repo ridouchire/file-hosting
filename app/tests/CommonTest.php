@@ -2,8 +2,8 @@
 
 use PHPUnit\Framework\TestCase;
 
-require(__DIR__ . "/../conf.php");
-require(__DIR__ . "/../func.php");
+require(__DIR__ . "/../../config.php");
+require(__DIR__ . "/../functions/common.php");
 
 class FuncTest extends TestCase
 {
