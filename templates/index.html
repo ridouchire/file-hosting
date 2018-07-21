@@ -10,7 +10,9 @@
         <header class="header">
 	    <nav>
 		<div class="topnav" id="myTopnav">
-		    <a href="/">{{ menu }}</a>
+		    {% for item in menu %}
+		    <a href="{{ item.link|e }}">{{ item.name|e }}</a>
+		    {% endfor %}
 		</div>
 	    </nav>
         </header>
