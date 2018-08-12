@@ -1,8 +1,9 @@
 <?php
 
 if (!defined('KERNEL')) {
-    echo "Access denied";
+    echo 'Access denied';
 }
+
 
 /**
  * Set notification on website
@@ -31,7 +32,9 @@ function fn_set_notification($type, $message)
     }
 
     return $notice;
-}
+
+}//end fn_set_notification()
+
 
 /**
  * Generate filename
@@ -46,7 +49,7 @@ function fn_set_notification($type, $message)
 function fn_generate_filename($filename, $tempname, $ext, $type = FILENAME_TYPE)
 {
     if ($type == 'UNIQUE') {
-        $name = uniqid();
+        $name     = uniqid();
         $filename = $name.'.'.$ext;
     } elseif ($type == 'TEMP') {
         $filename = $tempname.'.'.$ext;
@@ -54,11 +57,13 @@ function fn_generate_filename($filename, $tempname, $ext, $type = FILENAME_TYPE)
         $filename = htmlentities($filename);
         $filename = stripslashes($filename);
         $filename = strtolower($filename);
-        $filename = preg_replace("#[^a-z0-9_.-]#i", "", $filename);
+        $filename = preg_replace('#[^a-z0-9_.-]#i', '', $filename);
     }
 
     return $filename;
-}
+
+}//end fn_generate_filename()
+
 
 /**
  * Check supported file type
@@ -74,13 +79,18 @@ function fn_check_filetype($ext)
     }
 
     return true;
-}
 
-/** Set file permission
+}//end fn_check_filetype()
+
+
+/**
+ * Set file permission
  *
  * @param $path_file Full path file
  *
  * @return boolean
+ *
+ * @throws Exception
  */
 function fn_chmod($path_file)
 {
@@ -95,4 +105,26 @@ function fn_chmod($path_file)
     }
 
     return true;
-}
+
+}//end fn_chmod()
+
+
+/**
+ * Get schemas
+ *
+ * @return array
+ *
+ * @throws Exception
+ */
+function fn_get_schemas()
+{
+    $paths = glob(ROOT.'/app/schemas/*.php');
+    global $schemas;
+
+    foreach ($paths as $path) {
+        include $path;
+    }
+
+    return $schemas;
+
+}//end fn_get_schemas()

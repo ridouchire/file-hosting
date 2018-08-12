@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8"/>
-        <title>Image Hosting</title>
+        <title>{{ title }}</title>
 	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     </head>
@@ -10,14 +10,25 @@
         <header class="header">
 	    <nav>
 		<div class="topnav" id="myTopnav">
-		    <a href="/">Upload</a>
+		    {% for item in menu %}
+		    <a href="{{ item.link|e }}"
+		       {% if item.target %}
+		       target="_{{ item.target }}"
+		       {% endif %}
+		    >
+			{{ item.name|e }}
+		    </a>
+		    {% endfor %}
 		</div>
 	    </nav>
         </header>
-
-	<?php if (!empty($notice)): ?>
+	{% if notice %}
 	<div class="notice">
-	    <span class="notice-name"><?php echo $notice['name'] ?></span> : &nbsp;
-	    <span class="motice-message"><?php echo $notice['message'] ?></span>
+	    <span class="notice-name">
+		{{ notice.name }}
+	    </span> : &nbsp;
+	    <span class="motice-message">
+		{{ notice.message }}
+	    </span>
 	</div>
-	<?php endif ?>
+	{% endif %}
