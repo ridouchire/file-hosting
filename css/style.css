@@ -103,7 +103,7 @@ input[type=submit:active] {
 
 .file-link-item {
     list-style-type: none;
-    margi*n: 10px;
+    margin: 10px;
     border: 1px solid #DDD;
     background-color: #EEE;
     margin: 10px;
