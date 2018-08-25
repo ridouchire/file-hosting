@@ -5,9 +5,10 @@
 	    <h1>Image Hosting :: Links for Files</h1>
             <ul>
 		<?php foreach ($files as $file): ?>
-		<li class="file-link-item input"><a href='/files/<?php echo $file ?>' target="_blank"><?php echo $file ?></a></li>
+		<li class="file-link-item input"><a href='/files/<?php echo $file ?>' target="_blank"><div class="button-link"><?php echo $file ?></div></a></li>
 		<?php endforeach ?>
 		<?php endif ?>
+		<li class="file-link-item input"><a href="/"><div class="button-link">Back</div></a></li>
             </ul>
 	</div>
     </div>
