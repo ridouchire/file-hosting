@@ -15,10 +15,9 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
         if ($error == UPLOAD_ERR_OK) {
             $ext = explode('/', $_FILES['pictures']['type'][$key]);
             $ext = end($ext);
-        
+
             if (fn_check_filetype($ext) === false) {
                 $notice = fn_set_notification('error', 'Attempt to upload an unsupported file type');
-                break;
             }
 
             $temp     = $_FILES['pictures']['tmp_name'][$key];
