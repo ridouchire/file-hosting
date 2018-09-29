@@ -4,9 +4,7 @@ require_once 'conf.php';
 require_once 'func.php';
 
 $files           = array();
-$files_full_path = array();
 $notice          = false;
-
 
 if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
     $notice = fn_set_notification('error', 'Go back, fucking robots');
@@ -17,6 +15,7 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
             $ext = end($ext);
         
             if (fn_check_filetype($ext) === false) {
+                $error = UPLOAD_ERR_UNSUPPORTED;
                 $notice = fn_set_notification('error', 'Attempt to upload an unsupported file type');
                 break;
             }
@@ -27,12 +26,15 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
             $filename = fn_generate_filename($_FILES['pictures']['name'][$key], $tempname, $ext);
             $filename = $filename;
             $filepath = DIR_UPLOAD.basename($filename);
-            move_uploaded_file($temp, $filepath);
-            if (!fn_chmod($filepath) === false) {
-                $files[] = $filename;
-                $paths   = $filepath;
-            } else {
-                $notice = fn_set_notification('warning', 'Can not change file permission');
+
+            if ($error !== UPLOAD_ERR_UNSUPPORTED) {
+                move_uploaded_file($temp, $filepath);
+                if (!fn_chmod($filepath) === false) {
+                    $files[] = $filename;
+                    $paths   = $filepath;
+                } else {
+                    $notice = fn_set_notification('warning', 'Can not change file permission');
+                }
             }
         }
     }
@@ -42,9 +44,5 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
     }
 }
 
-if ($notice !== false) {
-    require "../templates/index.html";
-} else {
-    require "../templates/index.html";
-    require '../templates/list.html';
-}
+require "../templates/index.html";
+require '../templates/list.html';

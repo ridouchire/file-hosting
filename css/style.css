@@ -132,7 +132,7 @@ input[type=submit:active] {
 
 .notice {
     width: 70%;
-    margin: 0 auto 25px auto;
+    margin: 0 auto auto auto;
     padding: 30px 20px;
     margin-top: 10px;
     text-align: left;
@@ -161,7 +161,11 @@ input[type=submit:active] {
     }
 
     .notice {
-    width: 100%;
-    padding: 15px 10px;
+        width: 100%;
+        padding: 15px 10px;
+    }
+
+    .list-files {
+        margin-top: 1,5rem;
     }
 }
