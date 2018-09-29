@@ -54,4 +54,26 @@ class FuncTest extends TestCase
     {
         $this->assertEquals($expected, fn_generate_filename($name, $temp, $ext, $type));
     }
+
+    public function fnSetNotificationDataProvider()
+    {
+        return array(
+            array(
+                'error',
+                'message',
+                array(
+                    'name' => 'Error',
+                    'message' => 'message',
+                ),
+            ),
+        );
+    }
+
+    /**
+     * @dataProvider fnSetNotificationDataProvider
+     */
+    public function testFnSetNotification($type, $message, $expected)
+    {
+        $this->assertEquals($expected, fn_set_notification($type, $message));
+    }
 }
