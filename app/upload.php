@@ -4,9 +4,7 @@ require_once 'conf.php';
 require_once 'func.php';
 
 $files           = array();
-$files_full_path = array();
 $notice          = false;
-
 
 if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
     $notice = fn_set_notification('error', 'Go back, fucking robots');
