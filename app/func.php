@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('KERNEL')) {
-    echo "Access denied";
+    die("Access denied");
 }
 
 /**
