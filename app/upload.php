@@ -1,12 +1,13 @@
 <?php
 
+define('KERNEL', true);
 require_once 'conf.php';
 require_once 'func.php';
 
-$files           = array();
-$notice          = false;
+$files  = array();
+$notice = false;
 
-if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
+if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== TEST_SALT) {
     $notice = fn_set_notification('error', 'Go back, fucking robots');
 } else {
     foreach ($_FILES['pictures']['error'] as $key => $error) {
@@ -27,8 +28,7 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== '1010101') {
             $filepath = DIR_UPLOAD.basename($filename);
 
             if ($error !== UPLOAD_ERR_UNSUPPORTED) {
-                move_uploaded_file($temp, $filepath);
-                if (!fn_chmod($filepath) === false) {
+                if (!fn_move_uploaded_file_to_dir($temp, $filepath) === false) {
                     $files[] = $filename;
                     $paths   = $filepath;
                 } else {

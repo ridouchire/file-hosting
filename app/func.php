@@ -76,7 +76,8 @@ function fn_check_filetype($ext)
     return true;
 }
 
-/** Set file permission
+/**
+ * Set file permission
  *
  * @param $path_file Full path file
  *
@@ -91,6 +92,26 @@ function fn_chmod($path_file)
     try {
         chmod($path_file, 0666);
     } catch (Exception $e) {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Move uploaded file to directory
+ *
+ * @param $temp_path Temporary path to uploaded file.
+ * @param $path      Path where file will be moved.
+ *
+ * @return boolean
+ */
+function fn_move_uploaded_file_to_dir($temp_path, $path)
+{
+    $is_moved = move_uploaded_file($temp_path, $path);
+    $is_check_permission = fn_chmod($path);
+
+    if ($is_moved == false || $is_check_permission == false) {
         return false;
     }
 

@@ -1,4 +1,3 @@
-
 [![Build Status](https://travis-ci.org/ridouchire/image-hosting.svg?branch=master)](https://travis-ci.org/ridouchire/image-hosting)
 
 # Web application for upload and storing images.
