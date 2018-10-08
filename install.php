@@ -1,5 +1,6 @@
 <?php
 
+define('KERNEL', true);
 require(__DIR__ . "/app/conf.php");
 
 echo "==============\n";
