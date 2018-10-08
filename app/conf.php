@@ -1,13 +1,21 @@
 <?php
 
-define('KERNEL', true);
+if (!defined('KERNEL')) {
+    die("Access denied");
+}
+
 define('APP_VERSION', 'ImageHosting v.1.0.0');
 define('DIR_UPLOAD', '../files/');
-define('ALLOWED_TYPES', ['gif', 'jpg', 'jpeg', 'png', 'jpe'], true);
-// UNIQUE, TEMP, FILENAME
 define('FILENAME_TYPE', 'UNIQUE');
-
 define('UPLOAD_ERR_UNSUPPORTED', 9);
+define('TEST_SALT', '1010101');
+define('ALLOWED_TYPES', ['gif', 'jpg', 'jpeg', 'png', 'jpe'], true);
 
-ini_set('display_errors', true);
-error_reporting(E_ALL);
+if (is_file('../local_conf.php')) {
+    require '../local_conf.php';
+}
+
+if (defined('DEVELOPMENT')) {
+    error_reporting(-1);
+    define('DEBUG', true);
+}
