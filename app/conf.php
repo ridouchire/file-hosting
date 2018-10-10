@@ -4,7 +4,7 @@ if (!defined('KERNEL')) {
     die("Access denied");
 }
 
-define('APP_VERSION', 'ImageHosting v.1.0.0');
+define('APP_VERSION', 'ImageHosting v.1.0.2');
 define('DIR_UPLOAD', '../files/');
 define('FILENAME_TYPE', 'UNIQUE');
 define('UPLOAD_ERR_UNSUPPORTED', 9);
