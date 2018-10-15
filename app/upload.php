@@ -23,22 +23,19 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== TEST_SALT) {
 } else {
     foreach ($_FILES['pictures']['error'] as $key => $error) {
         if ($error == UPLOAD_ERR_OK) {
-            $ext = explode('/', $_FILES['pictures']['type'][$key]);
-            $ext = end($ext);
+            $ext = end(explode('/', $_FILES['pictures']['type'][$key]));
 
             if (fn_check_filetype($ext) === false) {
                 $error = UPLOAD_ERR_UNSUPPORTED;
                 $notice = fn_set_notification('error', 'Attempt to upload an unsupported file type');
-            }
+            } else {
+                $temp     = $_FILES['pictures']['tmp_name'][$key];
+                $tempname = explode('/', $temp);
+                $tempname = end($tempname);
+                $filename = fn_generate_filename($_FILES['pictures']['name'][$key], $tempname, $ext);
+                $filename = $filename;
+                $filepath = DIR_UPLOAD.basename($filename);
 
-            $temp     = $_FILES['pictures']['tmp_name'][$key];
-            $tempname = explode('/', $temp);
-            $tempname = end($tempname);
-            $filename = fn_generate_filename($_FILES['pictures']['name'][$key], $tempname, $ext);
-            $filename = $filename;
-            $filepath = DIR_UPLOAD.basename($filename);
-
-            if ($error !== UPLOAD_ERR_UNSUPPORTED) {
                 if (!fn_move_uploaded_file_to_dir($temp, $filepath) === false) {
                     $files[] = $filename;
                     $paths   = $filepath;
@@ -46,11 +43,9 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== TEST_SALT) {
                     $notice = fn_set_notification('warning', 'Can not change file permission');
                 }
             }
+        } else {
+            $notice = fn_set_notification('error', 'No files were uploaded.');
         }
-    }
-
-    if (empty($files)) {
-        $notice = fn_set_notification('error', 'No files were uploaded.');
     }
 }
 
