@@ -1,6 +1,10 @@
 <?php
 
+namespace IHTests;
+
 use PHPUnit\Framework\TestCase;
+
+define('KERNEL', true);
 
 require(__DIR__ . "/../conf.php");
 require(__DIR__ . "/../func.php");
@@ -9,14 +13,15 @@ class FuncTest extends TestCase
 {
     public function fnCheckFileTypeDataProvider()
     {
-        return array(
-            array('gif', true),
-            array('pdf', false),
-            array('jpg', true),
-            array('png', true),
-            array('exe', false),
-            array('sh', false),
-        );
+        return [
+            ['gif', true],
+            ['pdf', false],
+            ['jpg', true],
+            ['png', true],
+            ['exe', false],
+            ['sh', false],
+            ['php-x', false],
+        ];
     }
 
     /**
@@ -29,29 +34,91 @@ class FuncTest extends TestCase
 
     public function fnGenerateFilenameDataProvider()
     {
-        return array(
-            array(
-                'name#53.jpg',
-                'temp',
+        return [
+            [
                 'jpg',
+                'name#53.jpg',
                 'FILENAME',
                 'name53.jpg',
-            ),
-            array(
-                'name',
-                'temp',
+            ],
+            [
                 'png',
+                'temp',
                 'TEMP',
                 'temp.png',
-            ),
-        );
+            ],
+            [
+                'png',
+                null,
+                'TEMP',
+                false,
+            ],
+            [
+                'jpg',
+                null,
+                'FILENAME',
+                false,
+            ]
+        ];
     }
 
     /**
      * @dataProvider fnGenerateFilenameDataProvider
      */
-    public function testFnGenerateFilename($name, $temp, $ext, $type = FILENAME_TYPE, $expected)
+    public function testFnGenerateFilename($ext, $name, $type = FILENAME_TYPE, $expected)
     {
-        $this->assertEquals($expected, fn_generate_filename($name, $temp, $ext, $type));
+        $this->assertEquals($expected, fn_generate_filename($ext, $name, $type));
+    }
+
+    public function fnSetNotificationDataProvider()
+    {
+        return [
+            [
+                'error',
+                'message',
+                [
+                    'name' => 'ERROR',
+                    'message' => 'message',
+                ],
+            ],
+            [
+                'warning',
+                'message',
+                [
+                    'name' => 'WARNING',
+                    'message' => 'message',
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider fnSetNotificationDataProvider
+     */
+    public function testFnSetNotification($type, $message, $expected)
+    {
+        $this->assertEquals($expected, fn_set_notification($type, $message));
+    }
+
+    public function fnSetNotificationDataProvider()
+    {
+        return array(
+            array(
+                'error',
+                'message',
+                array(
+                    'name' => 'Error',
+                    'message' => 'message',
+                ),
+            ),
+        );
+    }
+
+    /**
+     * @dataProvider fnSetNotificationDataProvider
+     */
+    public function testFnSetNotification($type, $message, $expected)
+    {
+        $this->assertEquals($expected, fn_set_notification($type, $message));
     }
 }

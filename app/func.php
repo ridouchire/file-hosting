@@ -25,47 +25,48 @@ if (!defined('KERNEL')) {
  */
 function fn_set_notification($type, $message)
 {
-    $notice = array();
+    $notice = [];
 
-    if ($type == 'error') {
-        $notice['name'] = 'Error';
-    } elseif ($type == 'warning') {
-        $notice['name'] = 'Warning';
-    } else {
+    if (!isset($type) && !isset($message)) {
         return false;
     }
 
-    if ($message == null) {
-        return false;
-    } else {
-        $notice['message'] = $message;
+    if ($type == 'error' || $type == 'warning') {
+        $notice = [
+            'name' => strtoupper($type),
+            'message' => $message,
+        ];
+        return $notice;
     }
-
-    return $notice;
+    return false;
 }
 
 /**
  * Generate filename
  *
- * @param $filename     string Original name file
- * @param $tempname     string Temporary name file
  * @param $ext          string Extension file
- * @param FILENAME_TYPE string Type generate name file
+ * @param $filename     string Original name file
+ * @param $type         string Type generate name file
+ * @param $tempname     string Temporary name file
  *
  * @return string
  */
-function fn_generate_filename($filename, $tempname, $ext, $type = FILENAME_TYPE)
+function fn_generate_filename($ext, $filename = '', $type = FILENAME_TYPE)
 {
     if ($type == 'UNIQUE') {
         $name = uniqid();
         $filename = $name.'.'.$ext;
-    } elseif ($type == 'TEMP') {
-        $filename = $tempname.'.'.$ext;
-    } elseif ($type == 'FILENAME') {
+    } elseif ($type == 'TEMP' && !empty($filename)) {
+        $filename = $filename.'.'.$ext;
+    } elseif ($type == 'FILENAME' && !empty($filename)) {
+        $filename = explode('/', $filename);
+        $filename = end($filename);
         $filename = htmlentities($filename);
         $filename = stripslashes($filename);
         $filename = strtolower($filename);
         $filename = preg_replace("#[^a-z0-9_.-]#i", "", $filename);
+    } else {
+        return false;
     }
 
     return $filename;
@@ -87,7 +88,8 @@ function fn_check_filetype($ext)
     return true;
 }
 
-/** Set file permission
+/**
+ * Set file permission
  *
  * @param $path_file Full path file
  *
@@ -102,6 +104,26 @@ function fn_chmod($path_file)
     try {
         chmod($path_file, 0666);
     } catch (Exception $e) {
+        return false;
+    }
+
+    return true;
+}
+
+/**
+ * Move uploaded file to directory
+ *
+ * @param $temp_path Temporary path to uploaded file.
+ * @param $path      Path where file will be moved.
+ *
+ * @return boolean
+ */
+function fn_move_uploaded_file_to_dir($temp_path, $path)
+{
+    $is_moved = move_uploaded_file($temp_path, $path);
+    $is_check_permission = fn_chmod($path);
+
+    if ($is_moved == false || $is_check_permission == false) {
         return false;
     }
 

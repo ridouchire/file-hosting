@@ -1,10 +1,8 @@
+/* General section */
+
 *, html, body {
     margin: 0;
     padding: 0;
-}
-
-a {
-    text-decoration: none;
 }
 
 body {
@@ -14,6 +12,10 @@ body {
     align-items: center;
 }
 
+.header {
+    box-shadow: rgba(0,0,0, 0.4) 0 1px 1px -1px;
+}
+
 h1 {
     margin: 1rem;
     text-align: center;
@@ -21,8 +23,8 @@ h1 {
     letter-spacing: 2px;
 }
 
-.header {
-    box-shadow: rgba(0,0,0, 0.4) 0 1px 1px -1px;
+a {
+    text-decoration: none;
 }
 
 .nav {
@@ -52,6 +54,8 @@ h1 {
     border: 2px solid #CCF;
     border-radius: 3px;
 }
+
+/* Upload form section */
 
 .upload-form {
     display: flex;
@@ -101,6 +105,8 @@ input[type=submit:active] {
     zoom: 1;
 }
 
+/* File list section */
+
 .file-link-item {
     list-style-type: none;
     margin: 10px;
@@ -130,6 +136,8 @@ input[type=submit:active] {
     justify-content: center;
 }
 
+/* Notice section */
+
 .notice {
     width: 70%;
     margin: 0 auto auto auto;
@@ -152,6 +160,8 @@ input[type=submit:active] {
     font-size: 8px;
     color: black;
 }
+
+/* media screen section */
 
 @media screen and (max-width: 490px) {
 

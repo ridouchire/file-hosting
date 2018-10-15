@@ -1,27 +1,26 @@
 # PHP
 
 ### New functions.
+``fn_move_uploaded_file_to_dir($temp_path, $path)`` - Move uploaded file to directory.
 
-``fn_set_notification($type, $message)`` - Set notification on website.
+### Changed functions.
+```php
+-fn_generate_filename($filename, $tempname, $ext, $type);
++fn_generate_filename($ext, $filename, $type);
+```
 
-``fn_check_filetype($ext)`` - Check supported file type.
+### New unit-tests.
 
-``fn_generate_filename($filename, $tempname, $ext, $type)`` - Generate filename.
+``testFnSetNotification($type, $message, $expected)`` - test for fn_set_notification.
+        
+### Changed unit-tests.
 
-``fn_chmod($path_file)`` - Set file permission.
+```php
+-testFnGenerateFilename($name, $temp, $ext, $type, $expected);
++testFngenerateFilename($ext, $name, $type, $expected);
+```
 
 ### New configuration variables.
-
-``KERNEL`` - true.
-
-``APP_VERSION`` - Application latest version.
-
-``DIR_UPLOAD`` - Directory for upload files.
-
-``ALLOWED_TYPES`` - Array of supported filetypes.
-
-``FILENAME_TYPE`` - Method of generation filename.
-
-``UPLOAD_ERR_UNSUPPORTED`` - Unsupported file error code.
-
-# JavaScript.
+``SUPPORT_EMAIL`` - technical support email.
+``DEBUG`` - if true then display debug messages, otherwise there is no.
+``DEVELOPMENT`` - if true then developer mode is enabled.
