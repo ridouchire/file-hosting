@@ -23,20 +23,20 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== TEST_SALT) {
 } else {
     foreach ($_FILES['pictures']['error'] as $key => $error) {
         if ($error == UPLOAD_ERR_OK) {
-            $ext = end(explode('/', $_FILES['pictures']['type'][$key]));
+            $ext = explode('/', $_FILES['pictures']['type'][$key]);
+            $ext = end($ext);
 
             if (fn_check_filetype($ext) === false) {
                 $error = UPLOAD_ERR_UNSUPPORTED;
                 $notice = fn_set_notification('error', 'Attempt to upload an unsupported file type');
             } else {
-                $temp     = $_FILES['pictures']['tmp_name'][$key];
-                $tempname = explode('/', $temp);
-                $tempname = end($tempname);
-                $filename = fn_generate_filename($_FILES['pictures']['name'][$key], $tempname, $ext);
-                $filename = $filename;
+                $filename = fn_generate_filename($ext);
+                if ($filename == false) {
+                    fn_set_notification('error', 'Error occured. Please contact server administrator: <a href="mailto:ridouchire@gmail.com">E-Mail</a>');
+                }
                 $filepath = DIR_UPLOAD.basename($filename);
 
-                if (!fn_move_uploaded_file_to_dir($temp, $filepath) === false) {
+                if (!fn_move_uploaded_file_to_dir($_FILES['pictures']['tmp_name'][$key], $filepath) === false) {
                     $files[] = $filename;
                     $paths   = $filepath;
                 } else {

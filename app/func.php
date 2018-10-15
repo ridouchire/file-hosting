@@ -47,25 +47,29 @@ function fn_set_notification($type, $message)
 /**
  * Generate filename
  *
- * @param $filename     string Original name file
- * @param $tempname     string Temporary name file
  * @param $ext          string Extension file
- * @param FILENAME_TYPE string Type generate name file
+ * @param $filename     string Original name file
+ * @param $type         string Type generate name file
+ * @param $tempname     string Temporary name file
  *
  * @return string
  */
-function fn_generate_filename($filename, $tempname, $ext, $type = FILENAME_TYPE)
+function fn_generate_filename($ext, $filename = '', $type = FILENAME_TYPE)
 {
     if ($type == 'UNIQUE') {
         $name = uniqid();
         $filename = $name.'.'.$ext;
-    } elseif ($type == 'TEMP') {
-        $filename = $tempname.'.'.$ext;
-    } elseif ($type == 'FILENAME') {
+    } elseif ($type == 'TEMP' && !empty($filename)) {
+        $filename = $filename.'.'.$ext;
+    } elseif ($type == 'FILENAME' && !empty($filename)) {
+        $filename = explode('/', $filename);
+        $filename = end($filename);
         $filename = htmlentities($filename);
         $filename = stripslashes($filename);
         $filename = strtolower($filename);
         $filename = preg_replace("#[^a-z0-9_.-]#i", "", $filename);
+    } else {
+        return false;
     }
 
     return $filename;

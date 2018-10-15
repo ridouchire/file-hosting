@@ -34,28 +34,38 @@ class FuncTest extends TestCase
     {
         return array(
             array(
-                'name#53.jpg',
-                'temp',
                 'jpg',
+                'name#53.jpg',
                 'FILENAME',
                 'name53.jpg',
             ),
             array(
-                'name',
-                'temp',
                 'png',
+                'temp',
                 'TEMP',
                 'temp.png',
             ),
+            array(
+                'png',
+                null,
+                'TEMP',
+                false,
+            ),
+            array(
+                'jpg',
+                null,
+                'FILENAME',
+                false,
+            )
         );
     }
 
     /**
      * @dataProvider fnGenerateFilenameDataProvider
      */
-    public function testFnGenerateFilename($name, $temp, $ext, $type = FILENAME_TYPE, $expected)
+    public function testFnGenerateFilename($ext, $name, $type = FILENAME_TYPE, $expected)
     {
-        $this->assertEquals($expected, fn_generate_filename($name, $temp, $ext, $type));
+        $this->assertEquals($expected, fn_generate_filename($ext, $name, $type));
     }
 
     public function fnSetNotificationDataProvider()
