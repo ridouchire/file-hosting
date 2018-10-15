@@ -18,6 +18,7 @@ class FuncTest extends TestCase
             array('png', true),
             array('exe', false),
             array('sh', false),
+            array('php-x', false),
         );
     }
 
@@ -65,6 +66,14 @@ class FuncTest extends TestCase
                 'message',
                 array(
                     'name' => 'Error',
+                    'message' => 'message',
+                ),
+            ),
+            array(
+                'warning',
+                'message',
+                array(
+                    'name' => 'Warning',
                     'message' => 'message',
                 ),
             ),
