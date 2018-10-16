@@ -32,7 +32,7 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== TEST_SALT) {
             } else {
                 $filename = fn_generate_filename($ext);
                 if ($filename == false) {
-                    fn_set_notification('error', 'Error occured. Please contact server administrator: <a href="mailto:ridouchire@gmail.com">E-Mail</a>');
+                    fn_set_notification('error', 'Error occured. Please contact server administrator: <a href="' . SUPPORT_EMAIL .'">E-Mail</a>');
                 }
                 $filepath = DIR_UPLOAD.basename($filename);
 
