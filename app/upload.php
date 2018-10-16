@@ -29,28 +29,23 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== TEST_SALT) {
             if (fn_check_filetype($ext) === false) {
                 $error = UPLOAD_ERR_UNSUPPORTED;
                 $notice = fn_set_notification('error', 'Attempt to upload an unsupported file type');
-            }
+            } else {
+                $filename = fn_generate_filename($ext);
+                if ($filename == false) {
+                    fn_set_notification('error', 'Error occured. Please contact server administrator: <a href="' . SUPPORT_EMAIL .'">E-Mail</a>');
+                }
+                $filepath = DIR_UPLOAD.basename($filename);
 
-            $temp     = $_FILES['pictures']['tmp_name'][$key];
-            $tempname = explode('/', $temp);
-            $tempname = end($tempname);
-            $filename = fn_generate_filename($_FILES['pictures']['name'][$key], $tempname, $ext);
-            $filename = $filename;
-            $filepath = DIR_UPLOAD.basename($filename);
-
-            if ($error !== UPLOAD_ERR_UNSUPPORTED) {
-                if (!fn_move_uploaded_file_to_dir($temp, $filepath) === false) {
+                if (!fn_move_uploaded_file_to_dir($_FILES['pictures']['tmp_name'][$key], $filepath) === false) {
                     $files[] = $filename;
                     $paths   = $filepath;
                 } else {
                     $notice = fn_set_notification('warning', 'Can not change file permission');
                 }
             }
+        } else {
+            $notice = fn_set_notification('error', 'No files were uploaded.');
         }
-    }
-
-    if (empty($files)) {
-        $notice = fn_set_notification('error', 'No files were uploaded.');
     }
 }
 
