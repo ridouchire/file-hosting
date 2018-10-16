@@ -20,7 +20,6 @@ if (is_dir(__DIR__ . '/files') == false) {
 }
 
 if (defined('DEVELOPMENT') && isset($_REQUEST['version'])) {
-    var_dump(get_defined_vars());
     echo APP_VERSION;
     die;
 }
