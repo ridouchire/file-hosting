@@ -1,5 +1,7 @@
 <?php
 
+namespace IHTests;
+
 use PHPUnit\Framework\TestCase;
 
 define('KERNEL', true);
@@ -11,15 +13,15 @@ class FuncTest extends TestCase
 {
     public function fnCheckFileTypeDataProvider()
     {
-        return array(
-            array('gif', true),
-            array('pdf', false),
-            array('jpg', true),
-            array('png', true),
-            array('exe', false),
-            array('sh', false),
-            array('php-x', false),
-        );
+        return [
+            ['gif', true],
+            ['pdf', false],
+            ['jpg', true],
+            ['png', true],
+            ['exe', false],
+            ['sh', false],
+            ['php-x', false],
+        ];
     }
 
     /**
@@ -32,32 +34,32 @@ class FuncTest extends TestCase
 
     public function fnGenerateFilenameDataProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'jpg',
                 'name#53.jpg',
                 'FILENAME',
                 'name53.jpg',
-            ),
-            array(
+            ],
+            [
                 'png',
                 'temp',
                 'TEMP',
                 'temp.png',
-            ),
-            array(
+            ],
+            [
                 'png',
                 null,
                 'TEMP',
                 false,
-            ),
-            array(
+            ],
+            [
                 'jpg',
                 null,
                 'FILENAME',
                 false,
-            )
-        );
+            ]
+        ];
     }
 
     /**
@@ -70,24 +72,24 @@ class FuncTest extends TestCase
 
     public function fnSetNotificationDataProvider()
     {
-        return array(
-            array(
+        return [
+            [
                 'error',
                 'message',
-                array(
-                    'name' => 'Error',
+                [
+                    'name' => 'ERROR',
                     'message' => 'message',
-                ),
-            ),
-            array(
+                ],
+            ],
+            [
                 'warning',
                 'message',
-                array(
-                    'name' => 'Warning',
+                [
+                    'name' => 'WARNING',
                     'message' => 'message',
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
