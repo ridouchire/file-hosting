@@ -1,0 +1,18 @@
+clone:
+  git:
+    image: plugins/git
+    depth: 50
+
+pipeline:
+  phpchecksyntax:
+    image: php:7.2
+    commands:
+      - '! find . -type f -name "*.php" -exec php -d error_reporting=32767 -l {} \; 2>&1 >&- | grep "^"'
+  phpunit:
+    image: php:7.2
+    commands:
+      - apt update && apt install git -y
+      - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+      - php composer-setup.php --install-dir=/usr/local/bin --filename composer
+      - php /usr/local/bin/composer install --prefer-dist
+      - php -d memory_limit=256M vendor/bin/phpunit --no-coverage --colors=never ./app/tests
