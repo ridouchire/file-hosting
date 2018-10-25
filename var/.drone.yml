@@ -1,0 +1,11 @@
+clone:
+  git:
+    image: plugins/git
+    depth: 50
+
+pipeline:
+  phpunit:
+    image: php:7.2
+    commands:
+      - composer install -q --prefer-dist
+      - php -d memory_limit=256M vendor/bin/phpunit --no-coverage --colors=never ./app/tests
