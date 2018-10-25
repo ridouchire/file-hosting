@@ -8,6 +8,6 @@ pipeline:
     image: php:7.2
     commands:
       - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-      - php composer-setup.php --install-dir=/usr/local/bin --filename 
+      - php composer-setup.php --install-dir=/usr/local/bin --filename composer
       - php /usr/local/bin/composer install -q --prefer-dist
       - php -d memory_limit=256M vendor/bin/phpunit --no-coverage --colors=never ./app/tests
