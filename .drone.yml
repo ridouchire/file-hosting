@@ -5,8 +5,9 @@ clone:
 
 pipeline:
   phpunit:
-    image: php:7
+    image: php:7.2
     commands:
-      - ls -all
-      - php composer install -q --prefer-dist
+      - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+      - php composer-setup.php --install-dir=/usr/local/bin --filename 
+      - php /usr/local/bin/composer install -q --prefer-dist
       - php -d memory_limit=256M vendor/bin/phpunit --no-coverage --colors=never ./app/tests
