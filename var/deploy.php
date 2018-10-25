@@ -53,7 +53,7 @@ task('deploy:release', function() {
     pack_release();
 })->desc('Run unit-tests and build release archive');
 
-task('deploy:update_code', function() {;
+task('deploy:update_code', function() {
     $release   = get('release');
     $code_path = get('code_path');
     print_text("Moved to code dir");
@@ -66,8 +66,6 @@ task('deploy:restore', function() {
     $code_path = get('code_path');
     $release   = get('release');
     cd(get('web_path'));
-    print_text("Removed outdated app files in production dir");
-    run("rm -rf ./*");
     print_text("Copied release archive to production dir and unpacked and removed temp files");
     run("cp $code_path/$release.tar.gz ./ && tar xvf $release.tar.gz && rm $release.tar.gz");
     print_text("Run install script");
