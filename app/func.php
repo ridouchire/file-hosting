@@ -25,23 +25,20 @@ if (!defined('KERNEL')) {
  */
 function fn_set_notification($type, $message)
 {
-    $notice = array();
+    $notice = [];
 
-    if ($type == 'error') {
-        $notice['name'] = 'Error';
-    } elseif ($type == 'warning') {
-        $notice['name'] = 'Warning';
-    } else {
+    if (!isset($type) && !isset($message)) {
         return false;
     }
 
-    if ($message == null) {
-        return false;
-    } else {
-        $notice['message'] = $message;
+    if ($type == 'error' || $type == 'warning') {
+        $notice = [
+            'name' => strtoupper($type),
+            'message' => $message,
+        ];
+        return $notice;
     }
-
-    return $notice;
+    return false;
 }
 
 /**

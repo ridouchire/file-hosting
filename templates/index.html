@@ -3,21 +3,21 @@
     <head>
         <meta charset="UTF-8"/>
         <title>Image Hosting</title>
-	<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/style.css"/>
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     </head>
     <body>
         <header class="header">
-	    <nav>
-		<div class="topnav" id="myTopnav">
-		    <a href="/">Upload</a>
-		</div>
-	    </nav>
+            <nav>
+                <div class="topnav">
+                    <a href="/">Upload</a>
+                </div>
+            </nav>
         </header>
 
-	<?php if (!empty($notice)): ?>
-	<div class="notice">
-	    <span class="notice-name"><?php echo $notice['name'] ?></span> : &nbsp;
-	    <span class="motice-message"><?php echo $notice['message'] ?></span>
-	</div>
-	<?php endif ?>
+        <?php if (!empty($notice)): ?>
+        <div class="notice">
+            <span class="notice-name"><?php echo $notice['name'] ?></span> : &nbsp;
+            <span class="motice-message"><?php echo $notice['message'] ?></span>
+        </div>
+        <?php endif ?>
