@@ -9,6 +9,7 @@ pipeline:
     commands:
       - '! find . -type f -name "*.php" -exec php -d error_reporting=32767 -l {} \; 2>&1 >&- | grep "^"'
       - echo $TEST
+      - echo $TEST
     secrets: [ test ]
   phpunit:
     image: php:7.2
