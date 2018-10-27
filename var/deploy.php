@@ -18,10 +18,16 @@ host('demo.ume.69.mu')
 
 host('area4japan')
     ->user('root')
-    ->stage('production')
-    ->set('is_stag', 'N')
+    ->stage('staging')
+    ->set('is_stag', 'Y')
     ->set('env_path', '/home/image-hosting')
     ->set('web_path', '/home/image-hosting/web');
+
+host('ume.69.mu')
+    ->user('root')
+    ->stage('production')
+    ->set('is_stag', 'N')
+    ->set('web_path', '/var/www/html');
 
 function print_text($text, $prefix = '') {
     if ($prefix == 'S') {
@@ -99,11 +105,6 @@ task('restore_app', function() {
 });
 
 task('deploy', function() {
-    if (get('is_stag') == 'N') {
-        cd(get('env_path'));
-        print_text("Restarting container");
-        run('docker-compose restart');
-    }
     cd(get('web_path'));
     print_text("Running script install");
     run('curl http://localhost/install.php');
