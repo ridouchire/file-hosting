@@ -8,9 +8,7 @@ pipeline:
     image: php:7.2
     commands:
       - '! find . -type f -name "*.php" -exec php -d error_reporting=32767 -l {} \; 2>&1 >&- | grep "^"'
-      - echo $DOCKER_TEST
-      - echo $TEST
-    secrets: [ docker_test, test ]
+      - echo "$TEST"
   phpunit:
     image: php:7.2
     commands:
