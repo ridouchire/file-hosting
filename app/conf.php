@@ -15,7 +15,7 @@ if (!defined('KERNEL')) {
     die("Access denied");
 }
 
-define('APP_VERSION', '1.0.3');
+define('APP_VERSION', '1.1.0');
 define('DIR_UPLOAD', '../files/');
 define('FILENAME_TYPE', 'UNIQUE');
 define('UPLOAD_ERR_UNSUPPORTED', 9);
