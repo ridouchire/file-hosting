@@ -31,7 +31,8 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== TEST_SALT) {
             } else {
                 $filename = fn_generate_filename($ext);
                 if ($filename == false) {
-                    fn_set_notification('error',
+                    fn_set_notification(
+                        'error',
                         'Error occured. Please contact server administrator: <a href="'
                         . SUPPORT_EMAIL
                         . '">E-Mail</a>'
@@ -52,5 +53,5 @@ if (empty($_POST) || !isset($_POST['test']) || $_POST['test'] !== TEST_SALT) {
     }
 }
 
-require "../templates/index.html";
+require '../templates/index.html';
 require '../templates/list.html';

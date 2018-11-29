@@ -11,7 +11,7 @@
  */
 
 if (!defined('KERNEL')) {
-    die("Access denied");
+    die('Access denied');
 }
 
 define('APP_VERSION', '1.1.0');
