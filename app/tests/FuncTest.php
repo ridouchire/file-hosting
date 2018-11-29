@@ -6,11 +6,16 @@ use PHPUnit\Framework\TestCase;
 
 define('KERNEL', true);
 
-require(__DIR__ . "/../conf.php");
-require(__DIR__ . "/../func.php");
+require(__DIR__ . '/../conf.php');
+require(__DIR__ . '/../func.php');
 
 class FuncTest extends TestCase
 {
+    /**
+     * dataprovider for testFnCheckFileType
+     *
+     * @return array
+     */
     public function fnCheckFileTypeDataProvider()
     {
         return [
@@ -25,13 +30,25 @@ class FuncTest extends TestCase
     }
 
     /**
+     * Test for fn_check_filetype() function
+     *
+     * @param string  $extension Extension
+     * @param boolean $expected  Expected
+     * 
      * @dataProvider fnCheckFileTypeDataProvider
+     *
+     * @return void
      */
     public function testFnCheckFileType($extension, $expected)
     {
         $this->assertEquals($expected, fn_check_filetype($extension));
     }
 
+    /**
+     * dataprovider for generate filename test
+     *
+     * @return array
+     */
     public function fnGenerateFilenameDataProvider()
     {
         return [
@@ -63,13 +80,27 @@ class FuncTest extends TestCase
     }
 
     /**
+     * Test generate filename
+     *
+     * @param string $ext      Extension
+     * @param string $name     Filename
+     * @param string $type     Filename type constant
+     * @param mixed  $expected Expected
+     * 
      * @dataProvider fnGenerateFilenameDataProvider
+     *
+     * @return void
      */
     public function testFnGenerateFilename($ext, $name, $type = FILENAME_TYPE, $expected)
     {
         $this->assertEquals($expected, fn_generate_filename($ext, $name, $type));
     }
 
+    /**
+     * dataprovider for notification test
+     *
+     * @return array
+     */
     public function fnSetNotificationDataProvider()
     {
         return [
@@ -93,29 +124,15 @@ class FuncTest extends TestCase
     }
 
     /**
+     * Test notifications
+     *
+     * @param string $type     Notification type
+     * @param string $message  Message text
+     * @param array  $expected Expected
+     * 
      * @dataProvider fnSetNotificationDataProvider
-     */
-    public function testFnSetNotification($type, $message, $expected)
-    {
-        $this->assertEquals($expected, fn_set_notification($type, $message));
-    }
-
-    public function fnSetNotificationDataProvider()
-    {
-        return array(
-            array(
-                'error',
-                'message',
-                array(
-                    'name' => 'Error',
-                    'message' => 'message',
-                ),
-            ),
-        );
-    }
-
-    /**
-     * @dataProvider fnSetNotificationDataProvider
+     *
+     * @return void
      */
     public function testFnSetNotification($type, $message, $expected)
     {

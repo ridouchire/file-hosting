@@ -12,14 +12,14 @@
  */
 
 if (!defined('KERNEL')) {
-    die("Access denied");
+    die('Access denied');
 }
 
 /**
  * Set notification on website
  *
- * @param $type string Type notification
- * @param $message string Message notification
+ * @param string $type    Type notification
+ * @param string $message Message notification
  *
  * @return array|false
  */
@@ -44,38 +44,35 @@ function fn_set_notification($type, $message)
 /**
  * Generate filename
  *
- * @param $ext          string Extension file
- * @param $filename     string Original name file
- * @param $type         string Type generate name file
- * @param $tempname     string Temporary name file
+ * @param string $ext      Extension file
+ * @param string $filename Original name file
+ * @param string $type     Type generate name file
  *
  * @return string
  */
 function fn_generate_filename($ext, $filename = '', $type = FILENAME_TYPE)
 {
     if ($type == 'UNIQUE') {
-        $name = uniqid();
-        $filename = $name.'.'.$ext;
+        return uniqid() . '.' . $ext;
     } elseif ($type == 'TEMP' && !empty($filename)) {
-        $filename = $filename.'.'.$ext;
+        return $filename.'.'.$ext;
     } elseif ($type == 'FILENAME' && !empty($filename)) {
         $filename = explode('/', $filename);
         $filename = end($filename);
         $filename = htmlentities($filename);
         $filename = stripslashes($filename);
         $filename = strtolower($filename);
-        $filename = preg_replace("#[^a-z0-9_.-]#i", "", $filename);
-    } else {
-        return false;
+        $filename = preg_replace('#[^a-z0-9_.-]#i', '', $filename);
+        return $filename;
     }
 
-    return $filename;
+    return false;
 }
 
 /**
  * Check supported file type
  *
- * @param $ext Extension upload file
+ * @param string $ext Extension upload file
  *
  * @return boolean
  */
@@ -91,7 +88,7 @@ function fn_check_filetype($ext)
 /**
  * Set file permission
  *
- * @param $path_file Full path file
+ * @param string $path_file Full path file
  *
  * @return boolean
  */
@@ -113,8 +110,8 @@ function fn_chmod($path_file)
 /**
  * Move uploaded file to directory
  *
- * @param $temp_path Temporary path to uploaded file.
- * @param $path      Path where file will be moved.
+ * @param string $temp_path Temporary path to uploaded file.
+ * @param string $path      Path where file will be moved.
  *
  * @return boolean
  */
