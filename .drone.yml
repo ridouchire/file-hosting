@@ -5,7 +5,7 @@ clone:
 
 pipeline:
   phpchecksyntax:
-    image: php:7.2
+    image: php-test:7.2
     commands:
       - '! find . -type f -name "*.php" -exec php -d error_reporting=32767 -l {} \; 2>&1 >&- | grep "^"'
   phpunit:
