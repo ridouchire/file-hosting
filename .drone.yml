@@ -11,4 +11,5 @@ pipeline:
   phpunit:
     image: php-test:7.2
     commands:
+      - php /usr/local/bin/composer install --prefer-dist
       - php -d memory_limit=256M vendor/bin/phpunit --no-coverage --colors=never ./app/tests
